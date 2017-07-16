@@ -6,11 +6,11 @@
     <string name="phoneHeight">"Výška\nobjektivu"</string>
     <string name="distance">"Vzdálenost"</string>
     <string name="hint"><font size="15">Zadejte sem</font></string>
-    <string name="aimAtBase"><font size="24">"Zamiřte na spodek\na klikněte na obrazovku."</font></string>
-    <string name="heightHint"><font size="24">"Zamiřte na vršek\n a klikněte na obrazovku."</font></string>
+    <string name="aimAtBase"><font size="24">"Zamiřte na patu objektu\na klikněte na obrazovku."</font></string>
+    <string name="heightHint"><font size="24">"Zamiřte na vršek objektu\n a klikněte na obrazovku."</font></string>
     <string name="aimAtTop"><font size="24">"Zamiřte na vršek\n a získáte výšku."</font></string>
     <string name="measureHint"><font size="24">"Zadejte výšku\n nebo klikněte na Změřit."</font></string>
-    <string name="firstHint">"Délky zadávejte ve stejných jednotkách.\n Zadejte výšku objektivu od země.\nPoté zadejte/změřte vzdálenost."</string>
+    <string name="firstHint">"Délky zadávejte ve stejných jednotkách.\n Zadejte výšku objektivu od země.\nPoté zadejte/změřte vzdálenost\n k patě objektu."</string>
 
     <string name="strDist">"Dálka"</string>
     <string name="strHeight">"Výška"</string>

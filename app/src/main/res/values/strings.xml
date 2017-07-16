@@ -10,7 +10,7 @@
     <string name="heightHint"><font size="24">"Aim at the top\n and tap the screen."</font></string>
     <string name="aimAtTop"><font size="24">"Aim at the top\n and read the height."</font></string>
     <string name="measureHint"><font size="24">"Type the lens height\n or click on Measure."</font></string>
-    <string name="firstHint">"Input distances in the same units.\n Enter lens height from ground.\nThen enter/measure distance."</string>
+    <string name="firstHint">"Input distances in the same units.\n Enter lens height from ground.\nThen enter/measure distance\n to the base of the object."</string>
 
     <string name="strDist">"Dist."</string>
     <string name="strHeight">"Height"</string>
