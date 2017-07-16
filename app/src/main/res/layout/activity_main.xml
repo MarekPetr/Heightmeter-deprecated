@@ -88,11 +88,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@+id/phoneHeight"
-            android:layout_toEndOf="@+id/phoneHeight"
+            android:layout_toRightOf="@+id/LensHeight"
+            android:layout_toEndOf="@+id/LensHeight"
             android:layout_toLeftOf="@+id/distance"
             android:layout_toStartOf="@+id/distance"
-            android:layout_alignTop="@+id/phoneHeight"
+            android:layout_alignTop="@+id/LensHeight"
             android:gravity="center"
             android:shadowColor="@color/black"
             android:shadowRadius="2"
@@ -105,8 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/heightText"
-            android:layout_toRightOf="@+id/phoneHeight"
-            android:layout_toEndOf="@+id/phoneHeight"
+            android:layout_toRightOf="@+id/LensHeight"
+            android:layout_toEndOf="@+id/LensHeight"
             android:layout_toLeftOf="@+id/distance"
             android:layout_toStartOf="@+id/distance"
             android:gravity="center"
@@ -123,11 +123,11 @@
             android:focusableInTouchMode="true" />
 
         <TextView
-            android:id="@+id/phoneHeight"
+            android:id="@+id/LensHeight"
             android:layout_width="107dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/phoneHeight"
+            android:text="@string/lensHeight"
             android:textColor="@color/orange"
             android:textSize="20sp"
             android:gravity="center"
@@ -154,7 +154,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/phoneHeight"
+            android:layout_alignBottom="@+id/LensHeight"
             android:layout_marginTop="16dp"
             android:text="@string/distance"
             android:textColor="@color/orange"
@@ -164,24 +164,24 @@
             android:shadowRadius="2" />
 
         <LinearLayout
-            android:id="@+id/takeDistLayout"
+            android:id="@+id/fullscreenLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/takeDistance"
+                android:id="@+id/buttonFullscreen"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent" />
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editPhoneHeight"
+            android:id="@+id/editLensHeight"
             android:layout_width="107dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phoneHeight"
-            android:layout_alignLeft="@+id/phoneHeight"
-            android:layout_alignStart="@+id/phoneHeight"
+            android:layout_below="@+id/LensHeight"
+            android:layout_alignLeft="@+id/LensHeight"
+            android:layout_alignStart="@+id/LensHeight"
             android:layout_alignBottom="@+id/editDistance"
             android:inputType="numberSigned|numberDecimal"
             android:textColor="@color/orange"
@@ -195,12 +195,12 @@
             android:shadowRadius="2" />
 
         <Button
-            android:id="@+id/enterPhoneHeight"
+            android:id="@+id/enterLensHeight"
             android:layout_width="107dp"
             android:layout_height="35dp"
-            android:layout_alignRight="@+id/phoneHeight"
-            android:layout_alignEnd="@+id/phoneHeight"
-            android:layout_below="@+id/editPhoneHeight"
+            android:layout_alignRight="@+id/LensHeight"
+            android:layout_alignEnd="@+id/LensHeight"
+            android:layout_below="@+id/editLensHeight"
             android:text="@string/OK"
             android:alpha="0.7"
             android:background="@drawable/styled_button"

@@ -3,7 +3,7 @@
     <string name="app_name">Výškoměr</string>
     <string name="OK"><font size="10">OK</font></string>
     <string name="measureDist"><font size="10">Změřit</font></string>
-    <string name="phoneHeight">"Výška\nobjektivu"</string>
+    <string name="lensHeight">"Výška\nobjektivu"</string>
     <string name="distance">"Vzdálenost"</string>
     <string name="hint"><font size="15">Zadejte sem</font></string>
     <string name="aimAtBase"><font size="24">"Zamiřte na patu objektu\na klikněte na obrazovku."</font></string>

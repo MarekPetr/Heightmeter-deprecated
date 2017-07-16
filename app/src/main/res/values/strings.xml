@@ -3,7 +3,7 @@
     <string name="app_name">Heightmeter</string>
     <string name="OK"><font size="10">OK</font></string>
     <string name="measureDist"><font size="10">Measure</font></string>
-    <string name="phoneHeight">"Lens height"</string>
+    <string name="lensHeight">"Lens height"</string>
     <string name="distance">"Distance"</string>
     <string name="hint"><font size="15">Type here</font></string>
     <string name="aimAtBase"><font size="24">"Aim at the base\n and tap the screen."</font></string>
