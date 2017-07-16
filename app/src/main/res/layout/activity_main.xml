@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/interface_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal" >
+            <View
+                android:layout_width="40dp"
+                android:layout_height="2dp"
+                android:background="@color/orange" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:background="@android:color/transparent" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:background="@color/orange" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:background="@android:color/transparent" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="2dp"
+                android:background="@color/orange" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="1" >
+
+            <View
+                android:layout_height="40dp"
+                android:layout_width="2dp"
+                android:background="@color/orange" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="2dp"
+                android:background="@android:color/transparent" />
+
+            <View
+                android:layout_height="2dp"
+                android:layout_width="2dp"
+                android:background="@color/orange" />
+
+            <View
+                android:layout_height="10dp"
+                android:layout_width="2dp"
+                android:background="@android:color/transparent" />
+
+            <View
+                android:layout_height="40dp"
+                android:layout_width="2dp"
+                android:background="@color/orange" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/heightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/phoneHeight"
+            android:layout_toEndOf="@+id/phoneHeight"
+            android:layout_toLeftOf="@+id/distance"
+            android:layout_toStartOf="@+id/distance"
+            android:layout_alignTop="@+id/phoneHeight"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowRadius="2"
+            android:textColor="@color/orange"
+            android:textSize="35sp" />
+        
+        <TextView
+            android:id="@+id/height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/heightText"
+            android:layout_toRightOf="@+id/phoneHeight"
+            android:layout_toEndOf="@+id/phoneHeight"
+            android:layout_toLeftOf="@+id/distance"
+            android:layout_toStartOf="@+id/distance"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowRadius="2"
+            android:textColor="@color/orange"
+            android:textSize="35sp" />
+
+        <View
+            android:id="@+id/hideCursor"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <TextView
+            android:id="@+id/phoneHeight"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/phoneHeight"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowRadius="2" />
+
+        <TextView
+            android:id="@+id/distHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/firstHint"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="2"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/phoneHeight"
+            android:layout_marginTop="16dp"
+            android:text="@string/distance"
+            android:textColor="@color/orange"
+            android:textSize="19sp"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowRadius="2" />
+
+        <LinearLayout
+            android:id="@+id/takeDistLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/takeDistance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editPhoneHeight"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phoneHeight"
+            android:layout_alignLeft="@+id/phoneHeight"
+            android:layout_alignStart="@+id/phoneHeight"
+            android:layout_alignBottom="@+id/editDistance"
+            android:inputType="numberSigned|numberDecimal"
+            android:textColor="@color/orange"
+            android:textSize="19sp"
+            android:maxLength="5"
+            android:background="@drawable/apptheme_edit_text_holo_light"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:hint="@string/hint"
+            android:textColorHint="@color/skyBlue"
+            android:shadowColor="@color/black"
+            android:shadowRadius="2" />
+
+        <Button
+            android:id="@+id/enterPhoneHeight"
+            android:layout_width="107dp"
+            android:layout_height="35dp"
+            android:layout_alignRight="@+id/phoneHeight"
+            android:layout_alignEnd="@+id/phoneHeight"
+            android:layout_below="@+id/editPhoneHeight"
+            android:text="@string/OK"
+            android:alpha="0.7"
+            android:background="@drawable/styled_button"
+            style="@style/button_text" />
+
+        <EditText
+            android:id="@+id/editDistance"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/distance"
+            android:layout_alignStart="@+id/distance"
+            android:layout_alignLeft="@+id/distance"
+            android:inputType="numberDecimal"
+            android:textColor="@color/orange"
+            android:textSize="19sp"
+            android:maxLength="5"
+            android:background="@drawable/apptheme_edit_text_holo_light"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:hint="@string/hint"
+            android:textColorHint="@color/skyBlue"
+            android:shadowColor="@color/black"
+            android:shadowRadius="2" />
+
+        <Button
+            android:id="@+id/enterDistance"
+            android:layout_width="107dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/editDistance"
+            android:layout_alignLeft="@+id/editDistance"
+            android:layout_alignStart="@+id/editDistance"
+            android:alpha="0.7"
+            android:background="@drawable/styled_button"
+            android:text="@string/OK"
+            style="@style/button_text" />
+
+        <Button
+            android:id="@+id/measureDistance"
+            android:layout_width="107dp"
+            android:layout_height="35dp"
+            android:layout_alignLeft="@+id/editDistance"
+            android:layout_alignStart="@+id/editDistance"
+            android:layout_below="@+id/enterDistance"
+            android:alpha="0.7"
+            android:background="@drawable/styled_button"
+            android:text="@string/measureDist"
+            style="@style/button_text" />
+    </RelativeLayout>
+</FrameLayout>

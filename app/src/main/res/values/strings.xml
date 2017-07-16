@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Heightmeter</string>
+    <string name="OK"><font size="10">OK</font></string>
+    <string name="measureDist"><font size="10">Measure</font></string>
+    <string name="phoneHeight">"Lens height"</string>
+    <string name="distance">"Distance"</string>
+    <string name="hint"><font size="15">Type here</font></string>
+    <string name="aimAtBase"><font size="24">"Aim at the base\n and tap the screen."</font></string>
+    <string name="heightHint"><font size="24">"Aim at the top\n and tap the screen."</font></string>
+    <string name="aimAtTop"><font size="24">"Aim at the top\n and read the height."</font></string>
+    <string name="measureHint"><font size="24">"Type the lens height\n or click on Measure."</font></string>
+    <string name="firstHint">"Input distances in the same units.\n Enter lens height from ground.\nThen enter/measure distance."</string>
+
+    <string name="strDist">"Dist."</string>
+    <string name="strHeight">"Height"</string>
+    <string name="min">"min"</string>
+    <string name="max">"max"</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
