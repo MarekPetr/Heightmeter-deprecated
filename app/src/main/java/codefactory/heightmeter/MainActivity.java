@@ -130,7 +130,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 
                     if(distance != 0.0) {
                         //get the value from distance variable and show it in editText editDistance
-                        String setDistance = Float.toString(distance);
+                        float floatDist = (float) (Math.round(distance * 10.0) * 0.1);
+                        String setDistance = Float.toString(floatDist);
                         editDistance.setText(setDistance, TextView.BufferType.EDITABLE);
 
                         if(!(isEmpty(editDistance)) && !(isEmpty(editLensH)))
