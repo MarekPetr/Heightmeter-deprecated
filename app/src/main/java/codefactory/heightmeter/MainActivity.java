@@ -108,7 +108,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                 public void onClick(View v) {
                     v.startAnimation(buttonClick);
 
-                    if(!isEmpty(editLensH)) {
+                    if(!(isEmpty(editLensH)) && (lensHeight != 0)) {
                         measureDist = true;
                         distHint.setText(getResources().getString(R.string.aimAtBase));
                     }
