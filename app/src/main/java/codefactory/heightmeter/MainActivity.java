@@ -85,6 +85,11 @@ public class MainActivity extends Activity implements SensorEventListener {
                     if ((!measureDist) && !(isEmpty(editDistance)) && !(isEmpty(editLensH)))
                         distHint.setText(getResources().getString(R.string.aimAtTop));
 
+                    if(isEmpty(editDistance)){
+                        String setDistance = Float.toString(distance);
+                        editDistance.setText(setDistance, TextView.BufferType.EDITABLE);
+                    }
+
                     SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                     if (!preference.contains("heightStored")) {
                         editLensH.requestFocus();
@@ -111,7 +116,6 @@ public class MainActivity extends Activity implements SensorEventListener {
                         editLensH.requestFocus();
                         openSoftKeyboard(editLensH);
                     }
-
                 }
             }
         );
@@ -127,8 +131,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                     if(distance != 0.0) {
                         //get the value from distance variable and show it in editText editDistance
                         String setDistance = Float.toString(distance);
-                        EditText editText = (EditText)findViewById(R.id.editDistance);
-                        editText.setText(setDistance, TextView.BufferType.EDITABLE);
+                        editDistance.setText(setDistance, TextView.BufferType.EDITABLE);
 
                         if(!(isEmpty(editDistance)) && !(isEmpty(editLensH)))
                         {
@@ -150,13 +153,18 @@ public class MainActivity extends Activity implements SensorEventListener {
                 public void onClick(View view) {
                     if (!((editLensH.getText().toString().equals(null)) || (editLensH.getText().toString().equals("")))) {
                         lensHeight = Float.parseFloat(editLensH.getText().toString());
-
-                        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                        SharedPreferences.Editor editor = preference.edit();
-                        editor.putFloat("heightStored", lensHeight); // value to store
-                        editor.apply();
-                        heightStored = true;
                     }
+                    else {
+                        String height = Float.toString(lensHeight);
+                        editLensH.setText(height, TextView.BufferType.EDITABLE);
+                    }
+
+                    SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    SharedPreferences.Editor editor = preference.edit();
+                    editor.putFloat("heightStored", lensHeight); // value to store
+                    editor.apply();
+                    heightStored = true;
+
                     view.startAnimation(buttonClick);
                     hideSoftKeyboard(MainActivity.this);
                     editLensH.clearFocus();
