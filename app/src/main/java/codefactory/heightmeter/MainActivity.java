@@ -1,9 +1,5 @@
 package codefactory.heightmeter;
 
-/**
- * Created by Petr Marek on 6/19/17.
- */
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,7 +10,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -22,9 +17,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.preference.PreferenceManager;
-
-import static codefactory.heightmeter.R.id.editLensHeight;
 import static android.content.ContentValues.TAG;
+import com.codefactory.heightmeter.R;
 
 
 public class MainActivity extends Activity implements SensorEventListener {
@@ -42,7 +36,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     float[] mGravity;
     float[] mGeomagnetic;
 
-    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.F);
+    private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.F);
     Button buttonEnterLensH;
     EditText editLensH;
     boolean heightStored = false;
@@ -67,112 +61,107 @@ public class MainActivity extends Activity implements SensorEventListener {
         initListeners();
         initializeCamera();
 
-        buttonEnterDist = (Button)findViewById(R.id.enterDistance);
-        editDistance = (EditText)findViewById(R.id.editDistance);
+        buttonEnterDist = findViewById(R.id.enterDistance);
+        editDistance = findViewById(R.id.editDistance);
 
-        buttonEnterLensH = (Button)findViewById(R.id.enterLensHeight);
-        editLensH = (EditText)findViewById(editLensHeight);
+        buttonEnterLensH = findViewById(R.id.enterLensHeight);
+        editLensH = findViewById(R.id.editLensHeight);
 
         buttonEnterDist.setOnClickListener(
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!((editDistance.getText().toString().equals(null)) || (editDistance.getText().toString().equals("")))) {
-                        distance = Float.parseFloat(editDistance.getText().toString());
-                    }
-                    v.startAnimation(buttonClick);
-
-                    if ((!measureDist) && !(isEmpty(editDistance)) && !(isEmpty(editLensH)))
-                        distHint.setText(getResources().getString(R.string.aimAtTop));
-
-                    if(isEmpty(editDistance)){
-                        String setDistance = Float.toString(distance);
-                        editDistance.setText(setDistance, TextView.BufferType.EDITABLE);
-                    }
-
-                    SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    if (!preference.contains("heightStored")) {
-                        editLensH.requestFocus();
-                    } else {
-                        hideSoftKeyboard(MainActivity.this);
-                        editDistance.clearFocus();
-                    }
+            v -> {
+                if (!((editDistance.getText().toString().equals(null)) || (editDistance.getText().toString().equals("")))) {
+                    distance = Float.parseFloat(editDistance.getText().toString());
                 }
-            });
+                v.startAnimation(buttonClick);
 
-        distHint = (TextView) findViewById(R.id.distHint);
-        buttonMeasureDist = (Button)findViewById(R.id.measureDistance);
-        buttonMeasureDist.setOnClickListener(
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.startAnimation(buttonClick);
+                if ((!measureDist) && !(isEmpty(editDistance)) && !(isEmpty(editLensH)))
+                    distHint.setText(getResources().getString(R.string.aimAtTop));
 
-                    if(!(isEmpty(editLensH)) && (lensHeight != 0)) {
-                        measureDist = true;
-                        distHint.setText(getResources().getString(R.string.aimAtBase));
-                    }
-                    else{
-                        editLensH.requestFocus();
-                        openSoftKeyboard(editLensH);
-                    }
+                if(isEmpty(editDistance)){
+                    String setDistance = Float.toString(distance);
+                    editDistance.setText(setDistance, TextView.BufferType.EDITABLE);
+                }
+
+                SharedPreferences preference1 = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                if (!preference1.contains("heightStored")) {
+                    editLensH.requestFocus();
+                } else {
+                    hideSoftKeyboard(MainActivity.this);
+                    editDistance.clearFocus();
                 }
             }
         );
 
-        buttonFullscreen = (Button)findViewById(R.id.buttonFullscreen);
-        buttonFullscreen.setOnClickListener(
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.startAnimation(buttonClick);
-                    measureDist = false;
-
-                    if(distance != 0.0) {
-                        //get the value from distance variable and show it in editText editDistance
-                        float floatDist = (float) (Math.round(distance * 10.0) * 0.1);
-                        String setDistance = Float.toString(floatDist);
-                        editDistance.setText(setDistance, TextView.BufferType.EDITABLE);
-
-                        if(!(isEmpty(editDistance)) && !(isEmpty(editLensH)))
-                        {
-                            distHint.setText(getResources().getString(R.string.aimAtTop));
-                            SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                            if(!preference.contains("heightStored")) {
-                                editLensH.requestFocus();
-                                openSoftKeyboard(editLensH);
-                            }
-                        }
-                    }
+        distHint = findViewById(R.id.distHint);
+        buttonMeasureDist = findViewById(R.id.measureDistance);
+        buttonMeasureDist.setOnClickListener(
+            v -> {
+                v.startAnimation(buttonClick);
+                if(!(isEmpty(editLensH)) && (lensHeight != 0)) {
+                    measureDist = true;
+                    distHint.setText(getResources().getString(R.string.aimAtBase));
                 }
+                else {
+                    editLensH.requestFocus();
+                    openSoftKeyboard(editLensH);
+                }
+            }
+        );
+
+        buttonFullscreen = findViewById(R.id.buttonFullscreen);
+        buttonFullscreen.setOnClickListener(
+            v -> {
+                v.startAnimation(buttonClick);
+
+                measureDist = false;
+                if (distance == 0) {
+                    return;
+                }
+
+                //get the value from distance variable and show it in editText editDistance
+                float floatDist = (float) (Math.round(distance * 10.0) * 0.1);
+                String setDistance = Float.toString(floatDist);
+                editDistance.setText(setDistance, TextView.BufferType.EDITABLE);
+
+                if (isEmpty(editDistance) || isEmpty(editLensH)) {
+                    return;
+                }
+
+                distHint.setText(getResources().getString(R.string.aimAtTop));
+                SharedPreferences preference12 = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                if (preference12.contains("heightStored")) {
+                    return;
+                }
+
+                editLensH.requestFocus();
+                openSoftKeyboard(editLensH);
             }
         );
 
         buttonEnterLensH.setOnClickListener(
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!((editLensH.getText().toString().equals(null)) || (editLensH.getText().toString().equals("")))) {
-                        lensHeight = Float.parseFloat(editLensH.getText().toString());
-                    }
-                    else {
-                        String height = Float.toString(lensHeight);
-                        editLensH.setText(height, TextView.BufferType.EDITABLE);
-                    }
-
-                    SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    SharedPreferences.Editor editor = preference.edit();
-                    editor.putFloat("heightStored", lensHeight); // value to store
-                    editor.apply();
-                    heightStored = true;
-
-                    view.startAnimation(buttonClick);
-                    hideSoftKeyboard(MainActivity.this);
-                    editLensH.clearFocus();
-
-                    if ((!measureDist) && !(isEmpty(editDistance)) && !(isEmpty(editLensH)))
-                        distHint.setText(getResources().getString(R.string.aimAtTop));
+            view -> {
+                if (!((editLensH.getText().toString().equals(null)) || editLensH.getText().toString().equals(""))) {
+                    lensHeight = Float.parseFloat(editLensH.getText().toString());
                 }
+                else {
+                    String height = Float.toString(lensHeight);
+                    editLensH.setText(height, TextView.BufferType.EDITABLE);
+                }
+
+                SharedPreferences preference13 = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor editor = preference13.edit();
+                editor.putFloat("heightStored", lensHeight); // value to store
+                editor.apply();
+                heightStored = true;
+
+                view.startAnimation(buttonClick);
+                hideSoftKeyboard(MainActivity.this);
+                editLensH.clearFocus();
+
+                if (measureDist || isEmpty(editDistance) || isEmpty(editLensH)) {
+                    return;
+                }
+                distHint.setText(getResources().getString(R.string.aimAtTop));
             }
         );
 
@@ -196,6 +185,9 @@ public class MainActivity extends Activity implements SensorEventListener {
     protected void initializeCamera(){
         // Create an instance of Camera
         mCamera = getCameraInstance();
+        if (mCamera == null) {
+            return;
+        }
         mCamera.setDisplayOrientation(90);
 
         // Create our Preview view and set it as the content of our activity.
@@ -262,11 +254,11 @@ public class MainActivity extends Activity implements SensorEventListener {
             mPreview.getHolder().removeCallback(mPreview);
             releaseCamera();
             mCamera = null;
-            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            FrameLayout preview = findViewById(R.id.camera_preview);
             preview.removeView(mPreview);
             mPreview = null;
             mSensorManager.unregisterListener(this);
-        }catch (Exception e){
+        } catch (Exception e){
             Log.d(TAG, "onPause() error");
         }
     }
@@ -275,12 +267,10 @@ public class MainActivity extends Activity implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
 
         //If type is accelerometer only assign values to global property mGravity
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
-        {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             mGravity = event.values;
         }
-        else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
-        {
+        else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             mGeomagnetic = event.values;
             getHeight();
         }
@@ -296,8 +286,8 @@ public class MainActivity extends Activity implements SensorEventListener {
         boolean minFlag = false;
         boolean maxFlag = false;
 
-        TextView resultView = (TextView) findViewById(R.id.height);
-        TextView textView = (TextView) findViewById(R.id.heightText);
+        TextView resultView = findViewById(R.id.height);
+        TextView textView = findViewById(R.id.heightText);
 
         Context context = this;
         String strHeight = context.getString(R.string.strHeight);
@@ -305,57 +295,62 @@ public class MainActivity extends Activity implements SensorEventListener {
         String min = context.getString(R.string.min);
         String max = context.getString(R.string.max);
 
-        float height;
-        if (mGravity != null && mGeomagnetic != null)
-        {
-            float R[] = new float[9];
-            float I[] = new float[9];
+        if (mGravity == null || mGeomagnetic == null) {
+            return;
+        }
 
-            boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
+        float[] R = new float[9];
+        float[] I = new float[9];
 
-            if (success)
-            {
-                float orientation[] = new float[3];
-                SensorManager.getOrientation(R, orientation);
+        boolean gotRotationMatrix = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
+        if (!gotRotationMatrix) {
+            return;
+        }
 
-                inclineGravity = mGravity.clone();
-                float norm_Of_g = (float) Math.sqrt(inclineGravity[0] * inclineGravity[0] + inclineGravity[1] * inclineGravity[1] + inclineGravity[2] * inclineGravity[2]);
+        float[] orientation = new float[3];
+        SensorManager.getOrientation(R, orientation);
 
-                // Normalize the accelerometer vector
-                inclineGravity[2] = (inclineGravity[2] / norm_Of_g);
+        inclineGravity = mGravity.clone();
+        float norm_Of_g = (float) Math.sqrt(inclineGravity[0] * inclineGravity[0] + inclineGravity[1] * inclineGravity[1] + inclineGravity[2] * inclineGravity[2]);
 
-                float angle = (float) Math.toDegrees(Math.acos(inclineGravity[2]));
-                angle = angle - 90.0f;
-                angle = (float) Math.toRadians(angle);
+        // Normalize the accelerometer vector
+        inclineGravity[2] = (inclineGravity[2] / norm_Of_g);
 
-                if(measureDist) {
-                    distance = lensHeight / (-(float) (Math.tan(angle)));
-                    float floatDist = (float) (Math.round(distance * 10.0) * 0.1);
+        float angle = (float) Math.toDegrees(Math.acos(inclineGravity[2]));
+        angle = angle - 90.0f;
+        angle = (float) Math.toRadians(angle);
 
-                    textView.setText(strDist);
+        if (measureDist) {
+            distance = lensHeight / (-(float) (Math.tan(angle)));
+            float floatDist = (float) (Math.round(distance * 10.0) * 0.1);
 
-                    String displayDist = Float.toString(floatDist);
-                    resultView.setText(displayDist);
-                }
-                else {
-                    height = (float) (Math.tan(angle) * distance) + lensHeight;
-                    height = (float) (Math.round(height * 10.0) * 0.1);
+            textView.setText(strDist);
 
-                    if (height > 999999.9f)
-                        maxFlag = true;
-                    else if (height < -99999.9f)
-                        minFlag = true;
+            String displayDist = Float.toString(floatDist);
+            resultView.setText(displayDist);
+        }
+        else {
+            float height;
+            height = (float) (Math.tan(angle) * distance) + lensHeight;
+            height = (float) (Math.round(height * 10.0) * 0.1);
 
-                    textView.setText(strHeight);
-                    if (minFlag)
-                        resultView.setText(min);
-                    else if (maxFlag)
-                        resultView.setText(max);
-                    else {
-                        String displayHeight = Float.toString(height);
-                        resultView.setText(displayHeight);
-                    }
-                }
+            if (height > 999999.9f) {
+                maxFlag = true;
+            }
+            else if (height < -99999.9f) {
+                minFlag = true;
+            }
+
+            textView.setText(strHeight);
+            if (minFlag) {
+                resultView.setText(min);
+            }
+            else if (maxFlag) {
+                resultView.setText(max);
+            }
+            else {
+                String displayHeight = Float.toString(height);
+                resultView.setText(displayHeight);
             }
         }
     }
